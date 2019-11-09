@@ -16,8 +16,26 @@ _global_script_class_icons={
 [application]
 
 config/name="Floating Island - Wild Jam #15"
+run/main_scene="res://Scenes/TestWorld.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=320
+window/size/height=180
+window/size/test_width=1280
+window/size/test_height=720
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[input]
+
+space={
+"deadzone": 0.5,
+"events": [  ]
+}
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
