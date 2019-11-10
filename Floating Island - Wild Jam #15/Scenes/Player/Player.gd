@@ -23,6 +23,16 @@ var direction = 1
 var holding_wall = false
 var can_jump = true
 var currentState = IDLE
+var is_dash = false
+var can_dash = true
+var dash_count = 0
+var dash_count_limit = 3
+var dash_scaler = 15
+var wall_slide_scaler = 0.3
+
+var selected_game_object
+var selectable_game_objects = ["Bolder", "Slate"]
+var force_game_objects = []
 
 func _ready():
 	pass 
@@ -36,7 +46,7 @@ func pollInput():
 	on_wall = $RayCast2D.is_colliding()
 	
 	# Handles the movement of the player 
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") && !is_dash:
 		currentState = MOVING
 		direction = 1
 		
@@ -47,7 +57,7 @@ func pollInput():
 			
 		velocity.x = SPEED
 		$RayCast2D.set_cast_to(Vector2(CAST_LENGTH, 0))
-	elif Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("ui_left") && !is_dash:
 		currentState = MOVING
 		direction = -1
 		
@@ -61,16 +71,50 @@ func pollInput():
 	else:
 		velocity.x = 0
 		
+	if Input.is_action_just_pressed("ui_home") && selected_game_object != null:
+		useForce(Vector2(-1, 0))
+	elif Input.is_action_just_pressed("ui_end") && selected_game_object != null:
+		useForce(Vector2(1, 0))
+	if Input.is_action_just_pressed("ui_accept") && can_dash:
+		can_dash = false
+		is_dash = true
+		$DashTimer.start()
+		currentState = DASHING
+	if Input.is_action_just_pressed("ui_focus_next"):
+		cycleNextGameObject()
+	
+	calulate_dash_velocity()
+	findNextGameObject()
+	
 	if !on_wall:
 		holding_wall = false
 		
 	if Input.is_action_just_pressed("ui_select") && can_jump && not holding_wall:
 		velocity.y = JUMP_POWER
 		calulate_jump_velocity()
-		
 		is_jumping = true
 		can_jump = false
 
+func findNextGameObject():
+	if force_game_objects.size() > 0 && selected_game_object == null:
+		selected_game_object = force_game_objects[0]
+		selected_game_object.SetSelected(true)
+
+func cycleNextGameObject():
+	if force_game_objects.size() >= 2:
+		selected_game_object.SetSelected(false)
+		#var index = force_game_objects.bsearch(selected_game_object, true)
+		var index = force_game_objects.find(selected_game_object, 0)
+		if index >= 0:
+			index += 1
+		else:
+			assert("Something weird just happened")
+		if index >= force_game_objects.size():
+			index = 0
+			
+		selected_game_object = force_game_objects[index]
+		selected_game_object.SetSelected(true)
+		
 func calulate_jump_velocity():
 	velocity.y = JUMP_POWER
 	
@@ -83,20 +127,70 @@ func calulate_jump_velocity():
 	var horizChange = clamp(targetHorizChange ,-airControlAccelerationLimit , airControlAccelerationLimit ) # How much we are limiting ourselves to changing the horizontal velocity
 	velocity = Vector2(velocity.x + horizChange, velocity.y)
 
+func calulate_dash_velocity():
+	if is_dash && dash_count < dash_count_limit:
+		velocity.x = SPEED * direction * dash_scaler
+		dash_count += 1
+	elif dash_count >= dash_count_limit:
+		is_dash = false
+		dash_count = 0
+
+func useForce(forceDirection):
+	if selected_game_object != null:
+		var objectType = selected_game_object.GetType()
+		if objectType in "Bolder":
+			selected_game_object.interact(forceDirection)
+		elif objectType in "Slate":
+			forceDirection = Vector2(forceDirection.y, forceDirection.x)
+			selected_game_object.interact(forceDirection)
+
 func move():
 	if is_on_floor():
 		can_jump = true
 		holding_wall = false
 	else:
 		on_ground = false
-		#if velocity.y  < 0:
-		#	$AnimatedSprite.play("jump")
-		#else:
-		#	$AnimatedSprite.play("fall")
 	
 	# If on the wall and not on the ground dont apply GRAVITY
 	if holding_wall:
-		velocity.y += GRAVITY*0.35
+		velocity.y += GRAVITY*wall_slide_scaler
 	else:
 		velocity.y += GRAVITY
 	velocity = move_and_slide(velocity, FLOOR)
+
+func GetNumberOfGameObjects():
+	return force_game_objects.size()
+
+func GetCanDash():
+	return can_dash
+
+func _on_DashTimer_timeout():
+	is_dash = false
+	can_dash = true
+	currentState = IDLE
+
+func _on_GravityBoundingCircle_body_shape_entered(body_id, body, body_shape, area_shape):
+	var name = body.name
+	
+	#TODO: Change this implementation I am not the biggest fan of it
+	var is_force_object = name.find(selectable_game_objects[0], 0) > -1 || name.find(selectable_game_objects[1], 0) > -1
+	#if name in selectable_game_objects:
+	if is_force_object:
+		if selected_game_object == null:
+			body.SetSelected(true)
+			selected_game_object = body
+		force_game_objects.append(body)
+
+func _on_GravityBoundingCircle_body_shape_exited(body_id, body, body_shape, area_shape):
+	var name = body.name
+	var is_force_object = name.find(selectable_game_objects[0], 0) > -1 || name.find(selectable_game_objects[1], 0) > -1
+	if is_force_object:
+		body.SetSelected(false)
+		
+		if body == selected_game_object:
+			selected_game_object = null
+		
+		var index = force_game_objects.find(body)
+		force_game_objects.remove(index)
+		
+		

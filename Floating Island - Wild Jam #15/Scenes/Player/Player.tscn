@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/TempAssets/player.png" type="Texture" id=2]
@@ -6,28 +6,53 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
+[sub_resource type="CircleShape2D" id=2]
+radius = 180.0
+
 [node name="Player" type="KinematicBody2D"]
+position = Vector2( 0.568787, 0 )
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 0, -40 )
 current = true
-zoom = Vector2( 1.25, 1.25 )
+zoom = Vector2( 1.5, 1.5 )
 smoothing_enabled = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 18, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="GravityBoundingCircle" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GravityBoundingCircle"]
+shape = SubResource( 2 )
 [connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]
+[connection signal="body_shape_entered" from="GravityBoundingCircle" to="." method="_on_GravityBoundingCircle_body_shape_entered"]
+[connection signal="body_shape_exited" from="GravityBoundingCircle" to="." method="_on_GravityBoundingCircle_body_shape_exited"]
