@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/TestWorld.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Levels/TestWorld.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/TempAssets/temp_tileset.tres" type="TileSet" id=4]

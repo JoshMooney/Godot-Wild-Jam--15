@@ -29,6 +29,7 @@ var dash_count = 0
 var dash_count_limit = 3
 var dash_scaler = 15
 var wall_slide_scaler = 0.3
+var using_force = false
 
 var selected_game_object
 var selectable_game_objects = ["Bolder", "Slate"]
@@ -44,6 +45,7 @@ func _physics_process(delta):
 # Responsible for handling the input of the Player
 func pollInput():
 	on_wall = $RayCast2D.is_colliding()
+	on_ground = is_on_floor()
 	
 	# Handles the movement of the player 
 	if Input.is_action_pressed("ui_right") && !is_dash:
@@ -57,6 +59,9 @@ func pollInput():
 			
 		velocity.x = SPEED
 		$RayCast2D.set_cast_to(Vector2(CAST_LENGTH, 0))
+		if on_ground:
+			$AnimatedSprite.play("Running")
+		$AnimatedSprite.flip_h = false
 	elif Input.is_action_pressed("ui_left") && !is_dash:
 		currentState = MOVING
 		direction = -1
@@ -68,23 +73,37 @@ func pollInput():
 			
 		velocity.x = -SPEED
 		$RayCast2D.set_cast_to(Vector2(-CAST_LENGTH, 0))
+		if on_ground:
+			$AnimatedSprite.play("Running")
+		$AnimatedSprite.flip_h = true
 	else:
 		velocity.x = 0
 		
-	if Input.is_action_just_pressed("ui_home") && selected_game_object != null:
+	if Input.is_action_just_pressed("ui_home") && selected_game_object != null && !using_force:
 		useForce(Vector2(-1, 0))
-	elif Input.is_action_just_pressed("ui_end") && selected_game_object != null:
+		$AnimatedSprite.play("Force")
+		using_force = true
+	elif Input.is_action_just_pressed("ui_end") && selected_game_object != null && !using_force:
 		useForce(Vector2(1, 0))
-	if Input.is_action_just_pressed("ui_accept") && can_dash:
+		$AnimatedSprite.play("Force")
+		using_force = true
+	if Input.is_action_just_pressed("ui_accept") && can_dash && !using_force:
 		can_dash = false
 		is_dash = true
 		$DashTimer.start()
 		currentState = DASHING
+		$AnimatedSprite.play("Dash")
+		$AnimatedSprite.frame = 0 
 	if Input.is_action_just_pressed("ui_focus_next"):
 		cycleNextGameObject()
 	
 	calulate_dash_velocity()
 	findNextGameObject()
+	
+	if holding_wall && !on_ground:
+		$AnimatedSprite.play("Wall Slide")
+	if velocity == Vector2(0, 0) && !is_dash && !using_force:
+		$AnimatedSprite.play("Idle")
 	
 	if !on_wall:
 		holding_wall = false
@@ -94,6 +113,14 @@ func pollInput():
 		calulate_jump_velocity()
 		is_jumping = true
 		can_jump = false
+		$AnimatedSprite.play("Jump")
+	
+	if !on_ground && !on_wall && !is_dash && !using_force:
+		if velocity.y < 0:
+			$AnimatedSprite.play("Jump")
+		else:
+			$AnimatedSprite.play("Falling")
+
 
 func findNextGameObject():
 	if force_game_objects.size() > 0 && selected_game_object == null:
@@ -194,3 +221,9 @@ func _on_GravityBoundingCircle_body_shape_exited(body_id, body, body_shape, area
 		force_game_objects.remove(index)
 		
 		
+
+
+func _on_AnimatedSprite_animation_finished():
+	if $AnimatedSprite.animation == "Dash":
+		print("Dash Ended")
+	using_force = false
