@@ -1,11 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/GameObjects/Slate.gd" type="Script" id=1]
-[ext_resource path="res://Assets/TempAssets/slate.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/GameObjects/Outline.shader" type="Shader" id=3]
+[ext_resource path="res://Scenes/GameObjects/Outline.shader" type="Shader" id=2]
+[ext_resource path="res://Assets/GameObjects/slate_fin.png" type="Texture" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 3 )
+shader = ExtResource( 2 )
 shader_param/width = 5.0
 shader_param/outline_color = Color( 1, 1, 0, 1 )
 
@@ -18,13 +18,14 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="SpriteDefault" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-
 [node name="SpriteSelected" type="Sprite" parent="."]
 visible = false
 material = SubResource( 1 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
+
+[node name="SpriteDefault" type="Sprite" parent="."]
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
 shape = SubResource( 2 )

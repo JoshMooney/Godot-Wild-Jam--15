@@ -220,8 +220,8 @@ func _on_GravityBoundingCircle_body_shape_exited(body_id, body, body_shape, area
 		var index = force_game_objects.find(body)
 		force_game_objects.remove(index)
 		
-		
-
+func die():
+	pass
 
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "Dash":
