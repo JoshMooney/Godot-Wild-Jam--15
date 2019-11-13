@@ -13,6 +13,7 @@ func shoot():
 	var position = new_dart.get_position()
 	position.y += 1.2
 	new_dart.set_position(position);
+	new_dart.shoot()
 	add_child(new_dart)
 
 func _on_CoolDownTimer_timeout():

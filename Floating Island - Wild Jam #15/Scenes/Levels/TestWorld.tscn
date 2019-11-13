@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Levels/TestWorld.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -11,13 +11,15 @@
 [ext_resource path="res://Scenes/GameObjects/Key.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/GameObjects/Door.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/GameObjects/Sign.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/GameObjects/FallingPlatform.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/GameObjects/FallingBrick.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/GameObjects/Dart.tscn" type="PackedScene" id=14]
 
 [node name="World" type="Node"]
 script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-editor/display_folded = true
-position = Vector2( 368.581, 95.6036 )
+position = Vector2( 32, 112 )
 z_index = 1
 
 [node name="HUD" parent="Player" instance=ExtResource( 3 )]
@@ -32,13 +34,10 @@ __meta__ = {
 }
 
 [node name="Bolder" parent="." instance=ExtResource( 5 )]
-position = Vector2( 121.14, 134.512 )
-
-[node name="Slate" parent="." instance=ExtResource( 6 )]
-position = Vector2( 215.7, 136.716 )
+position = Vector2( -9.81718, 147.072 )
 
 [node name="Slate2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 725.808, 145.494 )
+position = Vector2( 754.547, 167.847 )
 
 [node name="Bolder2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1002.54, -23.026 )
@@ -52,29 +51,45 @@ position = Vector2( 720, 52 )
 [node name="Spikes" type="Node" parent="."]
 editor/display_folded = true
 
+[node name="Spike" parent="Spikes" instance=ExtResource( 8 )]
+position = Vector2( -88.5833, 6.97278 )
+rotation = 1.57079
+
+[node name="Spike9" parent="Spikes" instance=ExtResource( 8 )]
+position = Vector2( -88.5833, 50.5647 )
+rotation = 1.57079
+
 [node name="Spike2" parent="Spikes" instance=ExtResource( 8 )]
-position = Vector2( -90, 50 )
-rotation = 1.5708
-
-[node name="Spike3" parent="Spikes" instance=ExtResource( 8 )]
-position = Vector2( -90, 60 )
-rotation = 1.5708
-
-[node name="Spike4" parent="Spikes" instance=ExtResource( 8 )]
-position = Vector2( -90, 70 )
-rotation = 1.5708
-
-[node name="Spike5" parent="Spikes" instance=ExtResource( 8 )]
-position = Vector2( -90, 80 )
-rotation = 1.5708
+position = Vector2( -88.5833, 14.9728 )
+rotation = 1.57079
 
 [node name="Spike6" parent="Spikes" instance=ExtResource( 8 )]
-position = Vector2( -90, 90 )
-rotation = 1.5708
+position = Vector2( -88.5833, 58.5647 )
+rotation = 1.57079
+
+[node name="Spike3" parent="Spikes" instance=ExtResource( 8 )]
+position = Vector2( -88.5833, 22.9728 )
+rotation = 1.57079
+
+[node name="Spike10" parent="Spikes" instance=ExtResource( 8 )]
+position = Vector2( -88.5833, 66.5647 )
+rotation = 1.57079
+
+[node name="Spike4" parent="Spikes" instance=ExtResource( 8 )]
+position = Vector2( -88.5833, 32.9728 )
+rotation = 1.57079
 
 [node name="Spike7" parent="Spikes" instance=ExtResource( 8 )]
-position = Vector2( -90, 100 )
-rotation = 1.5708
+position = Vector2( -88.5833, 76.5647 )
+rotation = 1.57079
+
+[node name="Spike5" parent="Spikes" instance=ExtResource( 8 )]
+position = Vector2( -88.5833, 42.9728 )
+rotation = 1.57079
+
+[node name="Spike8" parent="Spikes" instance=ExtResource( 8 )]
+position = Vector2( -88.5833, 86.5647 )
+rotation = 1.57079
 
 [node name="Key" parent="." instance=ExtResource( 9 )]
 position = Vector2( 290, 16 )
@@ -83,5 +98,28 @@ position = Vector2( 290, 16 )
 position = Vector2( 660, -30 )
 
 [node name="Sign" parent="." instance=ExtResource( 11 )]
-position = Vector2( -50, 144.494 )
+position = Vector2( -48, 153.244 )
 collision_layer = 65
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="FallingPlatform" parent="Platforms" instance=ExtResource( 12 )]
+position = Vector2( 1168, 96 )
+
+[node name="FallingPlatform2" parent="Platforms" instance=ExtResource( 12 )]
+position = Vector2( 1184, 96 )
+
+[node name="FallingPlatform3" parent="Platforms" instance=ExtResource( 12 )]
+position = Vector2( 1200, 96 )
+
+[node name="FallingPlatform4" parent="Platforms" instance=ExtResource( 12 )]
+position = Vector2( 1216, 96 )
+
+[node name="FallingPlatform5" parent="Platforms" instance=ExtResource( 12 )]
+position = Vector2( 1232, 96 )
+
+[node name="FallingBrick" parent="." instance=ExtResource( 13 )]
+position = Vector2( 176, 0 )
+
+[node name="Dart" parent="." instance=ExtResource( 14 )]
+position = Vector2( 96, 144 )

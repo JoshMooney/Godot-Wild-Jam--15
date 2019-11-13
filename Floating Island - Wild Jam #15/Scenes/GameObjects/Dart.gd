@@ -6,15 +6,18 @@ const GAME_OBJECT_TYPE = "Dart"
 
 var direction = Vector2(0, 0)
 var velocity = Vector2()
-
+var is_shot = false
 
 func _ready():
 	pass
 
+func shoot():
+	is_shot = true
+
 func _physics_process(delta):
-	velocity = Vector2(direction.x * SPEED, direction.y * SPEED)
-	move()
-	#checkDespawn()
+	if is_shot:
+		velocity = Vector2(direction.x * SPEED, direction.y * SPEED)
+		move()
 	handleCollisions()
 			
 func handleCollisions():

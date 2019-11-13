@@ -55,11 +55,27 @@ func handleCollisions():
 			if "Spike" in name:
 				dead()
 			if "Dart" in name:
-				dead()
+				var dart = get_slide_collision(i).collider.get_position().y
+				var player = get_position().y
+				var frameSize = $AnimatedSprite.get_sprite_frames().get_frame("Falling", 0).get_height()
+				var total_height = player + frameSize/2
+				if  total_height < dart:
+					bounce()
+				else:
+					dead()
 				get_slide_collision(i).collider.destroy()
 			if "Key" in name:
 				var type = get_slide_collision(i).collider.pickup()
 				keys.append(type)
+			if "FallingPlatform" in name:
+				get_slide_collision(i).collider.trigger()
+			if "FallingBrick" in name:
+				var brick = get_slide_collision(i).collider.get_position().y
+				var player = get_position().y
+				if  player > brick:
+					dead()
+				#if get_slide_collision(i).collider.isFalling():
+				#	dead()
 				
 func dead():
 	is_dead = true
@@ -265,6 +281,10 @@ func findNameInList(name, list):
 		if name.find(index, 0) > -1:
 			return true
 	return false
+
+func bounce():
+	velocity.y = JUMP_POWER
+	calulate_jump_velocity()
 
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "Dash":
