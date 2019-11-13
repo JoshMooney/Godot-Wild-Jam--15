@@ -7,6 +7,8 @@
 extents = Vector2( 16, 8 )
 
 [node name="Shooter" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -18,3 +20,7 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 1 )
+
+[node name="CoolDownTimer" type="Timer" parent="."]
+wait_time = 3.0
+[connection signal="timeout" from="CoolDownTimer" to="." method="_on_CoolDownTimer_timeout"]

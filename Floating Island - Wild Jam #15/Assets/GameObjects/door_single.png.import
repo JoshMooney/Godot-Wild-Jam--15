@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/adventurer-die-06.png-b725442f438e3b40c7025c8b89b9ec46.stex"
+path="res://.import/door_single.png-26142ef70840e192bf645d2acf1c954c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Adventurer/adventurer-die-06.png"
-dest_files=[ "res://.import/adventurer-die-06.png-b725442f438e3b40c7025c8b89b9ec46.stex" ]
+source_file="res://Assets/GameObjects/door_single.png"
+dest_files=[ "res://.import/door_single.png-26142ef70840e192bf645d2acf1c954c.stex" ]
 
 [params]
 

@@ -30,17 +30,42 @@ var dash_count_limit = 3
 var dash_scaler = 15
 var wall_slide_scaler = 0.3
 var using_force = false
+var is_dead = false
 
 var selected_game_object
-var selectable_game_objects = ["Bolder", "Slate"]
+var f_game_objects = ["Bolder", "Slate"]
+var selectable_game_objects = ["Bolder", "Slate", "Door", "Sign"]
+var dangerious_game_objects = ["Spike", "Dart"]
 var force_game_objects = []
+var keys = []
 
 func _ready():
 	pass 
 
 func _physics_process(delta):
-	pollInput()
-	move()
+	if !is_dead:
+		pollInput()
+		move()
+		handleCollisions()
+			
+func handleCollisions():
+	if get_slide_count() > 0:
+		for i in range(get_slide_count()):
+			var name = get_slide_collision(i).collider.name
+			if "Spike" in name:
+				dead()
+			if "Dart" in name:
+				dead()
+				get_slide_collision(i).collider.destroy()
+			if "Key" in name:
+				var type = get_slide_collision(i).collider.pickup()
+				keys.append(type)
+				
+func dead():
+	is_dead = true
+	velocity = Vector2(0, velocity.y)
+	$AnimatedSprite.play("Die")
+	$CollisionShape2D.disabled = true
 
 # Responsible for handling the input of the Player
 func pollInput():
@@ -121,7 +146,6 @@ func pollInput():
 		else:
 			$AnimatedSprite.play("Falling")
 
-
 func findNextGameObject():
 	if force_game_objects.size() > 0 && selected_game_object == null:
 		selected_game_object = force_game_objects[0]
@@ -170,6 +194,10 @@ func useForce(forceDirection):
 		elif objectType in "Slate":
 			forceDirection = Vector2(forceDirection.y, forceDirection.x)
 			selected_game_object.interact(forceDirection)
+		elif objectType in "Sign":
+			selected_game_object.interact()
+		elif objectType in "Door":
+			selected_game_object.interact(keys)
 
 func move():
 	if is_on_floor():
@@ -197,20 +225,19 @@ func _on_DashTimer_timeout():
 	currentState = IDLE
 
 func _on_GravityBoundingCircle_body_shape_entered(body_id, body, body_shape, area_shape):
-	var name = body.name
-	
-	#TODO: Change this implementation I am not the biggest fan of it
-	var is_force_object = name.find(selectable_game_objects[0], 0) > -1 || name.find(selectable_game_objects[1], 0) > -1
-	#if name in selectable_game_objects:
-	if is_force_object:
-		if selected_game_object == null:
-			body.SetSelected(true)
-			selected_game_object = body
-		force_game_objects.append(body)
+	enterBoundingCircle(body_id, body, body_shape, area_shape)
 
 func _on_GravityBoundingCircle_body_shape_exited(body_id, body, body_shape, area_shape):
-	var name = body.name
-	var is_force_object = name.find(selectable_game_objects[0], 0) > -1 || name.find(selectable_game_objects[1], 0) > -1
+	exitBoundingCircle(body_id, body, body_shape, area_shape)
+	pass
+
+func exitBoundingCircle(body_id, body, body_shape, area_shape):
+	var name = ""
+	if body != null && body.has_method("GetType"):
+		print(body.GetType())
+		name = body.GetType()
+	#var is_force_object = name.find(selectable_game_objects[0], 0) > -1 || name.find(selectable_game_objects[1], 0) > -1
+	var is_force_object = findNameInList(name, selectable_game_objects)
 	if is_force_object:
 		body.SetSelected(false)
 		
@@ -219,11 +246,47 @@ func _on_GravityBoundingCircle_body_shape_exited(body_id, body, body_shape, area
 		
 		var index = force_game_objects.find(body)
 		force_game_objects.remove(index)
-		
-func die():
-	pass
+
+func enterBoundingCircle(body_id, body, body_shape, area_shape):
+	var name = body.name
+	
+	#TODO: Change this implementation I am not the biggest fan of it
+	#var is_force_object = name.find(selectable_game_objects[0], 0) > -1 || name.find(selectable_game_objects[1], 0) > -1
+	var is_force_object = findNameInList(name, selectable_game_objects)
+	#if name in selectable_game_objects:
+	if is_force_object:
+		if selected_game_object == null:
+			body.SetSelected(true)
+			selected_game_object = body
+		force_game_objects.append(body)
+
+func findNameInList(name, list):
+	for index in list:
+		if name.find(index, 0) > -1:
+			return true
+	return false
 
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "Dash":
 		print("Dash Ended")
+	if $AnimatedSprite.animation == "Die":
+		get_tree().change_scene("res://Scenes/Levels/TestWorld.tscn")
 	using_force = false
+
+func _on_InteractionBoundingCircle_body_shape_entered(body_id, body, body_shape, area_shape):
+	enterBoundingCircle(body_id, body, body_shape, area_shape)
+
+func _on_InteractionBoundingCircle_body_shape_exited(body_id, body, body_shape, area_shape):
+	exitBoundingCircle(body_id, body, body_shape, area_shape)
+
+
+func _on_GravityBoundingCircle_area_entered(area):
+	pass # Replace with function body.
+
+
+func _on_InteractionBoundingCircle_area_entered(area):
+	pass # Replace with function body.
+
+
+func _on_InteractionBoundingCircle_area_exited(area):
+	pass # Replace with function body.

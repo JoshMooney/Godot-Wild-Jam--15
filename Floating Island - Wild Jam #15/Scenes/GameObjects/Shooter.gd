@@ -1,24 +1,20 @@
 extends StaticBody2D
 
+var dart = preload("res://Scenes/GameObjects/Dart.tscn")
 export var direction = Vector2(1, 0)
-export var shoot_rest_steps = 5
-export var shoot_begin_delay = 0
-var shoot_counter = 0
+export var timer_start_delay = 0
 
 func _ready():
-	pass 
-	
-func _physics_process(delta):
-	if canShoot():
-		shoot()
-
-func canShoot():
-	shoot_counter += 1
-	if shoot_counter >= shoot_rest_steps:
-		shoot_counter = 0
-		return true 
-	return false
+	$CoolDownTimer.start(timer_start_delay)
 
 func shoot():
-	pass
+	var new_dart = dart.instance()
+	new_dart.SetDirection(direction)
+	var position = new_dart.get_position()
+	position.y += 1.2
+	new_dart.set_position(position);
+	add_child(new_dart)
 
+func _on_CoolDownTimer_timeout():
+	shoot()
+	$CoolDownTimer.start()

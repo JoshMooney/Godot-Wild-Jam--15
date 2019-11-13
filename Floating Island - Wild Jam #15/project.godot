@@ -75,6 +75,17 @@ space={
 "events": [  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Projectile"
+2d_physics/layer_4="Pickup"
+2d_physics/layer_5="Shooter"
+2d_physics/layer_6="ForceObjects"
+2d_physics/layer_7="InteractableObjects"
+2d_physics/layer_8="Signs"
+
 [rendering]
 
 quality/2d/use_pixel_snap=true
