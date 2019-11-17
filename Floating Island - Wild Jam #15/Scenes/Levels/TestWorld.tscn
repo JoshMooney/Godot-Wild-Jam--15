@@ -121,3 +121,6 @@ position = Vector2( 176, 0 )
 
 [node name="Dart" parent="." instance=ExtResource( 13 )]
 position = Vector2( 96, 144 )
+
+[node name="Gem" parent="." instance=ExtResource( 9 )]
+position = Vector2( 250, 120 )

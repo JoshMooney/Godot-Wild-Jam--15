@@ -2,6 +2,7 @@ extends Area2D
 
 export var next_stage = ""
 onready var SceneTransitionOut = get_node("CanvasLayer/SceneTransition")
+export var active = true
 
 func _ready():
 	$AnimatedSprite.play("default")
@@ -17,3 +18,11 @@ func _on_Portal_body_shape_entered(body_id, body, body_shape, area_shape):
 	var name = body.name
 	if name == "Player":
 		trigger()
+
+func deactivate():
+	hide()
+	$CollisionShape2D.disabled = true
+	
+func activate():
+	show()
+	$CollisionShape2D.disabled = false

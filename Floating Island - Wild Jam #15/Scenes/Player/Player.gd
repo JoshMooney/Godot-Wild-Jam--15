@@ -65,7 +65,7 @@ func handleCollisions():
 				else:
 					dead()
 				get_slide_collision(i).collider.destroy()
-			if "Key" in name:
+			if "Gem" in name:
 				var type = get_slide_collision(i).collider.pickup()
 				keys.append(type)
 			if "FallingPlatform" in name:
@@ -151,7 +151,6 @@ func pollInput():
 		holding_wall = false
 		
 	if Input.is_action_just_pressed("ui_select") && can_jump && not holding_wall:
-		respawn()
 		velocity.y = JUMP_POWER
 		calulate_jump_velocity()
 		is_jumping = true
@@ -223,8 +222,6 @@ func useForce(forceDirection):
 			selected_game_object.interact(forceDirection)
 		elif objectType in "Sign":
 			selected_game_object.interact()
-		elif objectType in "Door":
-			selected_game_object.interact(keys)
 
 func move():
 	if is_on_floor():
@@ -245,6 +242,7 @@ func GetNumberOfGameObjects():
 
 func GetCanDash():
 	return can_dash
+	
 
 func _on_DashTimer_timeout():
 	is_dash = false

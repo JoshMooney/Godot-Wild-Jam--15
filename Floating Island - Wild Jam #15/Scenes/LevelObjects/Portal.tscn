@@ -35,6 +35,5 @@ shape = SubResource( 2 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="SceneTransition" parent="CanvasLayer" instance=ExtResource( 6 )]
-visible = false
 direction = -1
 [connection signal="body_shape_entered" from="." to="." method="_on_Portal_body_shape_entered"]

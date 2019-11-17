@@ -7,7 +7,6 @@ var hubLevelPath = "res://Scenes/source/HubLevel.tscn"
 var menuItems = ["Start", "Quit"]
 var menuIndex = 0 
 
-
 func _ready():
 	setArrow()
 	
@@ -48,6 +47,8 @@ func safeIncrement(amount, index, size):
 	index += amount
 	if index == size:
 		index = 0
+	elif index < 0:
+		index = size-1
 	return index
 
 func action():

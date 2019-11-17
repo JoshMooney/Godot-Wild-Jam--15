@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/GameObjects/Gem.gd" type="Script" id=1]
 [ext_resource path="res://Assets/GameObjects/gems_final.png" type="Texture" id=2]
+[ext_resource path="res://Assets/GameObjects/gem_2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/GameObjects/gem_3.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/LevelObjects/RaceCondition.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -14,16 +17,46 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Level1" type="Sprite" parent="."]
+editor/display_folded = true
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 32, 32 )
 
-[node name="Tween" type="Tween" parent="Sprite"]
+[node name="Tween" type="Tween" parent="Level1"]
+repeat = true
+playback_speed = 3.0
+playback/repeat = true
+playback/speed = 3.0
+
+[node name="Level2" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="Tween" type="Tween" parent="Level2"]
+repeat = true
+playback_speed = 3.0
+playback/repeat = true
+playback/speed = 3.0
+
+[node name="Level3" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="Tween" type="Tween" parent="Level3"]
 repeat = true
 playback_speed = 3.0
 playback/repeat = true
 playback/speed = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
+
+[node name="RaceCondition" parent="." instance=ExtResource( 5 )]
