@@ -19,7 +19,7 @@ script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 editor/display_folded = true
-position = Vector2( 32, 112 )
+position = Vector2( 690, -20 )
 z_index = 1
 
 [node name="HUD" parent="Player" instance=ExtResource( 3 )]

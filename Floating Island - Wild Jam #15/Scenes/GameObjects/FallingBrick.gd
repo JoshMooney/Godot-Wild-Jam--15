@@ -43,3 +43,4 @@ func _on_TriggerArea_body_entered(body):
 		
 func isFalling():
 	return is_falling
+

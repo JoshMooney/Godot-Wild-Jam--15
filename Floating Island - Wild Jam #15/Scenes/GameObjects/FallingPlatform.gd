@@ -24,3 +24,8 @@ func GetType():
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "Smoke":
 		queue_free()
+
+func reset():
+	$AnimatedSprite.play("Normal")
+	$CollisionShape2D.disabled = false
+	is_triggered = false

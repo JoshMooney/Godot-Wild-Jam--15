@@ -2,9 +2,11 @@ extends StaticBody2D
 
 var dart = preload("res://Scenes/GameObjects/Dart.tscn")
 export var direction = Vector2(1, 0)
-export var timer_start_delay = 0
+export var timer_start_delay = 0.0
+export var cooldown_time = 1.0
 
 func _ready():
+	$CoolDownTimer.set("wait_time", cooldown_time)
 	$CoolDownTimer.start(timer_start_delay)
 
 func shoot():

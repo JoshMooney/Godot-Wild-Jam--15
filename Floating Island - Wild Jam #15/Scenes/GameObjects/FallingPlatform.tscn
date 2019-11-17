@@ -1,31 +1,31 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/GameObjects/FallingPlatform.gd" type="Script" id=1]
-[ext_resource path="res://Assets/GameObjects/FallingPlatform/break_1.png" type="Texture" id=2]
-[ext_resource path="res://Assets/GameObjects/FallingPlatform/break_2.png" type="Texture" id=3]
-[ext_resource path="res://Assets/GameObjects/FallingPlatform/break_3.png" type="Texture" id=4]
-[ext_resource path="res://Assets/GameObjects/FallingPlatform/brick.png" type="Texture" id=5]
-[ext_resource path="res://Assets/GameObjects/FallingPlatform/brick_crack.png" type="Texture" id=6]
+[ext_resource path="res://Assets/GameObjects/FallingPlatform/brick.png" type="Texture" id=2]
+[ext_resource path="res://Assets/GameObjects/FallingPlatform/brick_crack.png" type="Texture" id=3]
+[ext_resource path="res://Assets/GameObjects/FallingPlatform/break_1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/GameObjects/FallingPlatform/break_2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/GameObjects/FallingPlatform/break_3.png" type="Texture" id=6]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
-"loop": false,
-"name": "Smoke",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": false,
 "name": "Normal",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": false,
 "name": "Cracked",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "Smoke",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 8 )
 
 [node name="FallingPlatform" type="StaticBody2D"]
@@ -36,13 +36,13 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "Normal"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="TriggerTimer" type="Timer" parent="."]
 wait_time = 0.8

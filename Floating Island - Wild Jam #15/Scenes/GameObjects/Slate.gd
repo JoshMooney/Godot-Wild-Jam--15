@@ -35,7 +35,7 @@ func interact(direction):
 	applyForce(direction, POWER)
 
 func applyForce(direction, force):
-	velocity += Vector2(direction.x * force, direction.y * force)
+	velocity += Vector2(0, direction.y * force)
 	velocity = move_and_slide(velocity, FLOOR)
 	
 func GetType():

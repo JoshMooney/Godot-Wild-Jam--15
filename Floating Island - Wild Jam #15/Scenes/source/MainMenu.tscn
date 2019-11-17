@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/source/background_mockup.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Menu/background.png" type="Texture" id=2]
@@ -10,6 +10,9 @@
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 4 )
 
 [node name="MainMenu" type="Node2D"]
@@ -63,3 +66,12 @@ direction = -1
 [node name="FadeInHub" parent="CanvasLayer" instance=ExtResource( 5 )]
 visible = false
 use_parent_material = false
+
+[node name="Label" type="Label" parent="."]
+margin_left = 26.7921
+margin_top = 28.3015
+margin_right = 66.7921
+margin_bottom = 49.3015
+custom_fonts/font = SubResource( 3 )
+text = "FI"
+uppercase = true

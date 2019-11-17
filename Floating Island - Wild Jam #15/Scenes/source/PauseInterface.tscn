@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/source/PauseInterface.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Menu/llpixel/LLPIXEL3.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
 
 [node name="PauseInterface" type="Node2D"]
 pause_mode = 2
@@ -13,4 +17,5 @@ margin_left = 144.0
 margin_top = 48.0
 margin_right = 190.0
 margin_bottom = 62.0
+custom_fonts/font = SubResource( 1 )
 text = "Paused"

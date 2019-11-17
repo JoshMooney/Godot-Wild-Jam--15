@@ -4,20 +4,19 @@
 [ext_resource path="res://Assets/GameObjects/dart.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7, 3 )
+extents = Vector2( -11.068, 0.77 )
 
 [node name="Dart" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 103
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 6.28319
+scale = Vector2( 0.75, 1 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2( -0.0415783, -0.374202 )
+scale = Vector2( 0.75, 1 )
 shape = SubResource( 1 )

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const POWER = 300
+const POWER = 230
 const FLOOR = Vector2(0, -1)
 const GRAVITY = 10
 const GAME_OBJECT_TYPE = "Bolder"

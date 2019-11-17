@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const SPEED = 250
+const SPEED = 115
 const MAX_DISTANCE = 1000
 const GAME_OBJECT_TYPE = "Dart"
 
@@ -24,15 +24,21 @@ func handleCollisions():
 	if get_slide_count() > 0:
 		for i in range(get_slide_count()):
 			var name = get_slide_collision(i).collider.name
-			if !("Player" in name):
-				destroy()
-			else:
-				get_slide_collision(i).collider.dead()
-				destroy()
+			if "Player" in name:
+				var dart = get_global_position().y
+				var player = get_slide_collision(i).collider.get_position().y
+				var frameSize = get_slide_collision(i).collider.getFrameSize()
+				var total_height = 2 - player + frameSize/2
+				if  total_height < dart:
+					get_slide_collision(i).collider.bounce()
+				else:
+					get_slide_collision(i).collider.dead()
+			destroy()
 	
 func checkDespawn():
 	if is_outside_view_bounds():
 		queue_free()
+	
 	
 func is_outside_view_bounds():
 	return position.x > OS.get_screen_size().x or position.x < 0.0 \

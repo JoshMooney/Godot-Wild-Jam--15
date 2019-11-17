@@ -48,7 +48,10 @@ func _physics_process(delta):
 		pollInput()
 		move()
 		handleCollisions()
-			
+
+func getFrameSize():
+	return $AnimatedSprite.get_sprite_frames().get_frame("Falling", 0).get_height()
+
 func handleCollisions():
 	if get_slide_count() > 0:
 		for i in range(get_slide_count()):
@@ -56,10 +59,13 @@ func handleCollisions():
 			if "Spike" in name:
 				dead()
 			if "Dart" in name:
-				var dart = get_slide_collision(i).collider.get_position().y
+				var a =get_slide_collision(i).collider.get_class()
+				var dart = get_slide_collision(i).collider.get_global_position().y
 				var player = get_position().y
-				var frameSize = $AnimatedSprite.get_sprite_frames().get_frame("Falling", 0).get_height()
+				var frameSize = getFrameSize()
 				var total_height = player + frameSize/2
+				
+				
 				if  total_height < dart:
 					bounce()
 				else:
@@ -299,7 +305,7 @@ func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == "Dash":
 		print("Dash Ended")
 	if $AnimatedSprite.animation == "Die":
-		get_tree().change_scene("res://Scenes/Levels/TestWorld.tscn")
+		respawn()
 	using_force = false
 
 func _on_InteractionBoundingCircle_body_shape_entered(body_id, body, body_shape, area_shape):

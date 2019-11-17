@@ -33,6 +33,11 @@ func setCamera():
 	$Player/Camera2D.limit_top = (map_limits.position.y * map_cellsize.y) - map_cellsize.x
 	$Player/Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
 
+func reset():
+	var a = $GameObjects/FallingPlatforms.get_children()
+	for brick in a:
+		brick.reset()
+
 func set_hub_portal():
 	if level_complete:
 		HubPortal.activate()
@@ -56,6 +61,8 @@ func _physics_process(delta):
 		set_hub_portal()
 	if shakeEnabled:
 		shake()
+	if $Player.is_dead:
+		reset()
 	
 func pollInput():
 	pass

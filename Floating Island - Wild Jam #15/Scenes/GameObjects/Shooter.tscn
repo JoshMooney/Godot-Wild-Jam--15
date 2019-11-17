@@ -15,10 +15,12 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 1 )
+z_index = 1
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+scale = Vector2( 0.5, 1 )
 shape = SubResource( 1 )
 
 [node name="CoolDownTimer" type="Timer" parent="."]

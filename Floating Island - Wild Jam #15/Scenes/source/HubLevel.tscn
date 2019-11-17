@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/source/HubLevel.gd" type="Script" id=1]
 [ext_resource path="res://Tilesets/Grass_Rock_Tileset_v3.tres" type="TileSet" id=2]
@@ -9,14 +9,17 @@
 [ext_resource path="res://Assets/Backgrounds/Layer4.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Backgrounds/Layer5.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Backgrounds/Layer6.png" type="Texture" id=9]
-[ext_resource path="res://Scenes/LevelObjects/Portal.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Assets/GameObjects/gem_1.png" type="Texture" id=11]
-[ext_resource path="res://Assets/GameObjects/gem_2.png" type="Texture" id=12]
-[ext_resource path="res://Assets/GameObjects/gem_3.png" type="Texture" id=13]
-[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scenes/source/PauseInterface.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Scenes/LevelObjects/SceneTransition.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Scenes/LevelObjects/Checkpoint.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Assets/Menu/island_1.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Menu/island_2.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Menu/island_3.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/LevelObjects/Portal.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/GameObjects/gem_1.png" type="Texture" id=14]
+[ext_resource path="res://Assets/GameObjects/gem_2.png" type="Texture" id=15]
+[ext_resource path="res://Assets/GameObjects/gem_3.png" type="Texture" id=16]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/source/PauseInterface.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/LevelObjects/SceneTransition.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/LevelObjects/Checkpoint.tscn" type="PackedScene" id=20]
 
 [node name="HubLevel" type="Node2D"]
 position = Vector2( 0, 16 )
@@ -82,11 +85,11 @@ __meta__ = {
 }
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-editor/display_folded = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 editor/display_folded = true
-motion_mirroring = Vector2( 512, 0 )
+motion_offset = Vector2( 0, -120 )
+motion_mirroring = Vector2( 512, 320 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -144,26 +147,41 @@ texture = ExtResource( 8 )
 offset = Vector2( 256, 96 )
 
 [node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.9, 1 )
 motion_mirroring = Vector2( 512, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer6"]
+position = Vector2( 0, 6.6 )
+scale = Vector2( 1.19141, 1.10312 )
 texture = ExtResource( 9 )
 offset = Vector2( 256, 96 )
 
+[node name="Sprite" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 806, 144 )
+texture = ExtResource( 10 )
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 1257, 17 )
+scale = Vector2( 0.854098, 0.784 )
+texture = ExtResource( 11 )
+
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 1575, -28 )
+scale = Vector2( 0.854098, 0.784 )
+texture = ExtResource( 12 )
+
 [node name="Portals" type="Node2D" parent="."]
 
-[node name="Level1Portal" parent="Portals" instance=ExtResource( 10 )]
+[node name="Level1Portal" parent="Portals" instance=ExtResource( 13 )]
 position = Vector2( 841, 240 )
 
-[node name="Level2Portal" parent="Portals" instance=ExtResource( 10 )]
+[node name="Level2Portal" parent="Portals" instance=ExtResource( 13 )]
 visible = false
 position = Vector2( 1225, 33 )
 
-[node name="Level3Portal" parent="Portals" instance=ExtResource( 10 )]
+[node name="Level3Portal" parent="Portals" instance=ExtResource( 13 )]
 visible = false
 position = Vector2( 1751, 17 )
 
@@ -175,29 +193,29 @@ visible = false
 position = Vector2( 840, 253 )
 rotation = 0.772682
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 11 )
+texture = ExtResource( 14 )
 
 [node name="Level2Reward" type="Sprite" parent="LevelRewards"]
 position = Vector2( 1224, 44 )
 rotation = -0.0269121
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 12 )
+texture = ExtResource( 15 )
 
 [node name="Level3Reward" type="Sprite" parent="LevelRewards"]
 position = Vector2( 1751, 29 )
 rotation = -0.0269121
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 13 )
+texture = ExtResource( 16 )
 
-[node name="Player" parent="." instance=ExtResource( 14 )]
+[node name="Player" parent="." instance=ExtResource( 17 )]
 position = Vector2( 96, 144 )
 
-[node name="PauseInterface" parent="." instance=ExtResource( 15 )]
+[node name="PauseInterface" parent="." instance=ExtResource( 18 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="SceneTransition" parent="CanvasLayer" instance=ExtResource( 16 )]
+[node name="SceneTransition" parent="CanvasLayer" instance=ExtResource( 19 )]
 TIME = 0.75
 
-[node name="Checkpoint" parent="." instance=ExtResource( 17 )]
+[node name="Checkpoint" parent="." instance=ExtResource( 20 )]
 position = Vector2( 456, 137 )
