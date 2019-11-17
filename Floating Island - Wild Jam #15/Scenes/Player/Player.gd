@@ -38,6 +38,7 @@ var selectable_game_objects = ["Bolder", "Slate", "Door", "Sign"]
 var dangerious_game_objects = ["Spike", "Dart"]
 var force_game_objects = []
 var keys = []
+onready var respawn_point = get_position()
 
 func _ready():
 	pass 
@@ -150,6 +151,7 @@ func pollInput():
 		holding_wall = false
 		
 	if Input.is_action_just_pressed("ui_select") && can_jump && not holding_wall:
+		respawn()
 		velocity.y = JUMP_POWER
 		calulate_jump_velocity()
 		is_jumping = true
@@ -161,6 +163,15 @@ func pollInput():
 			$AnimatedSprite.play("Jump")
 		else:
 			$AnimatedSprite.play("Falling")
+
+func set_respawn_point(pos):
+	respawn_point = pos
+	
+func respawn():
+	set_position(respawn_point)
+	is_dead = false
+	$AnimatedSprite.play("Idle")
+	$CollisionShape2D.disabled = false
 
 func findNextGameObject():
 	if force_game_objects.size() > 0 && selected_game_object == null:

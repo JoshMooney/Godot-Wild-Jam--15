@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/LevelObjects/SceneTransition.tscn" type="PackedScene" id=1]
+
+
+[node name="FadeScene" type="Node2D"]
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="SceneTransition" parent="Overlay" instance=ExtResource( 1 )]

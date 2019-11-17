@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Adventurer/adventurer-dash-00.png" type="Texture" id=2]
@@ -10,25 +10,26 @@
 [ext_resource path="res://Assets/Adventurer/adventurer-jump-01.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Adventurer/adventurer-jump-02.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Adventurer/adventurer-jump-03.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Adventurer/adventurer-die-00.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Adventurer/adventurer-die-01.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Adventurer/adventurer-die-02.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Adventurer/adventurer-die-03.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Adventurer/adventurer-die-04.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Adventurer/adventurer-die-05.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Adventurer/adventurer-die-06.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Adventurer/adventurer-wall-slide-00.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Adventurer/adventurer-wall-slide-01.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Adventurer/adventurer-run-00.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Adventurer/adventurer-run-01.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Adventurer/adventurer-run-02.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Adventurer/adventurer-run-03.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Adventurer/adventurer-run-04.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Adventurer/adventurer-run-05.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Adventurer/adventurer-fall-00.png" type="Texture" id=26]
-[ext_resource path="res://Assets/Adventurer/adventurer-fall-01.png" type="Texture" id=27]
-[ext_resource path="res://Assets/Adventurer/adventurer-idle-00.png" type="Texture" id=28]
-[ext_resource path="res://Assets/Adventurer/adventurer-idle-01.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Adventurer/adventurer-fall-00.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Adventurer/adventurer-fall-01.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-00.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-01.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-02.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-03.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-04.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-05.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-06.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Adventurer/adventurer-idle-00.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Adventurer/adventurer-idle-01.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-00.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-01.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-02.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-03.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-04.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-05.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Adventurer/adventurer-wall-slide-00.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Adventurer/adventurer-wall-slide-01.png" type="Texture" id=29]
+[ext_resource path="res://Scenes/LevelObjects/ObjectiveArrow.tscn" type="PackedScene" id=30]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 16 )
@@ -53,29 +54,29 @@ animations = [ {
 "name": "Jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": false,
-"name": "Die",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 18 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "Wall Slide",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
-"loop": true,
-"name": "Running",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 26 ), ExtResource( 27 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "Falling",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 28 ), ExtResource( 29 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": false,
+"name": "Die",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 21 ) ],
 "loop": true,
 "name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "Running",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 29 ) ],
+"loop": true,
+"name": "Wall Slide",
 "speed": 5.0
 } ]
 
@@ -101,9 +102,11 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 0, -40 )
 current = true
-zoom = Vector2( 1.5, 1.5 )
+limit_left = 0
+limit_top = -64
+limit_right = 1856
+limit_bottom = 320
 smoothing_enabled = true
 __meta__ = {
 "_edit_lock_": true
@@ -138,6 +141,10 @@ collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBoundingCircle"]
 shape = SubResource( 4 )
+
+[node name="ObjectiveArrow" parent="." instance=ExtResource( 30 )]
+position = Vector2( 0, -50 )
+scale = Vector2( 0.3, 0.3 )
 [connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]
 [connection signal="body_shape_entered" from="GravityBoundingCircle" to="." method="_on_GravityBoundingCircle_body_shape_entered"]
 [connection signal="body_shape_exited" from="GravityBoundingCircle" to="." method="_on_GravityBoundingCircle_body_shape_exited"]

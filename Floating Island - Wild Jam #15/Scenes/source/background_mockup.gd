@@ -1,6 +1,6 @@
 extends Node2D
 
-
+onready var FadeOutHandler = get_node("CanvasLayer/FadeOutHub")
 const ARROW_OFFSET_X = -10
 const ARROW_OFFSET_Y = 10
 var hubLevelPath = "res://Scenes/source/HubLevel.tscn"
@@ -58,5 +58,5 @@ func action():
 			get_tree().quit()
 			
 func startGame():
-	get_tree().change_scene(hubLevelPath)
-	pass
+	$CanvasLayer/FadeOutHub.set_next_scene("res://Scenes/source/HubLevel.tscn")
+	$CanvasLayer/FadeOutHub.trigger()

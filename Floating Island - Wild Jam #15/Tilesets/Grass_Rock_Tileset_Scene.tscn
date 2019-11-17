@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Tileset/Grass_Rock_Tileset.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Tileset/Trees.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Tileset/world_tilesheet_grass.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Tileset/bolder.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Tileset/columns.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -49,18 +53,10 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="Ground001" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 0.144341, 20 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 16, 16, 16, 16 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground001"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground001/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
 
 [node name="Ground005" type="Sprite" parent="."]
 editor/display_folded = true
@@ -175,88 +171,40 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="Ground018" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( -20, 70 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 48, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground018"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground018/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground028" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 48, 70 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 48, 48, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground028"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground028/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground021" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( -20, 90 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 64, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground021"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground021/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground027" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 48, 90 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 48, 64, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground027"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground027/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground022" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( -20, 110 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 80, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground022"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground022/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground031" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 48, 110 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 48, 80, 16, 16 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground031"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground031/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
 
 [node name="Ground032" type="Sprite" parent="."]
 editor/display_folded = true
@@ -272,131 +220,65 @@ visible = false
 visible = false
 shape = SubResource( 1 )
 
+[node name="NonColiding" type="Sprite" parent="."]
+position = Vector2( 11, 210 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 112, 64, 16, 16 )
+
 [node name="Ground023" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 0.144341, 90 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 16, 64, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground023"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground023/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground033" type="Sprite" parent="."]
-editor/display_folded = true
-position = Vector2( 68.1443, 90 )
+position = Vector2( 68, 90 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 64, 64, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground033"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground033/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground024" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 0.144341, 110 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 16, 80, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground024"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground024/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground029" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 68.1443, 110 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 64, 80, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground029"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground029/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground025" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 20, 90 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 32, 64, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground025"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground025/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground026" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 20, 110 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 32, 80, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground026"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground026/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground019" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 0, 70 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 16, 48, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground019"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground019/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground030" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 68, 70 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 64, 48, 16, 16 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground030"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground030/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
-
 [node name="Ground020" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 20, 70 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 32, 48, 16, 16 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground020"]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground020/StaticBody2D"]
-visible = false
-shape = SubResource( 1 )
 
 [node name="Ground015" type="Sprite" parent="."]
 editor/display_folded = true
@@ -583,3 +465,198 @@ position = Vector2( 130, 160 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 144, 32, 16, 16 )
+
+[node name="Prop019" type="Sprite" parent="."]
+position = Vector2( 82, 240 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 16, 32, 64, 64 )
+
+[node name="Prop050" type="Sprite" parent="."]
+position = Vector2( 56, 240 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 80, 0, 32, 64 )
+
+[node name="Prop020" type="Sprite" parent="."]
+position = Vector2( 192, 230 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 112, 0, 64, 96 )
+
+[node name="Prop021" type="Sprite" parent="."]
+position = Vector2( 288, 202 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 48, 32, 16, 16 )
+
+[node name="Prop022" type="Sprite" parent="."]
+position = Vector2( 304, 202 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 64, 32, 16, 16 )
+
+[node name="Prop023" type="Sprite" parent="."]
+position = Vector2( 320, 202 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 80, 32, 16, 16 )
+
+[node name="Prop024" type="Sprite" parent="."]
+position = Vector2( 336, 202 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 80, 16, 16, 16 )
+
+[node name="Prop025" type="Sprite" parent="."]
+position = Vector2( 288, 224 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 16, 16 )
+
+[node name="Prop032" type="Sprite" parent="."]
+position = Vector2( 280, 258 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 96, 64, 16, 16 )
+
+[node name="Prop033" type="Sprite" parent="."]
+position = Vector2( 280, 272 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 96, 80, 16, 16 )
+
+[node name="Prop034" type="Sprite" parent="."]
+position = Vector2( 296, 272 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 16, 32, 16, 16 )
+
+[node name="Prop035" type="Sprite" parent="."]
+position = Vector2( 312, 272 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 16, 16, 16, 16 )
+
+[node name="Prop029" type="Sprite" parent="."]
+position = Vector2( 272, 224 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 16, 0, 16, 16 )
+
+[node name="Prop031" type="Sprite" parent="."]
+position = Vector2( 144, 224 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 64, 64 )
+
+[node name="Prop026" type="Sprite" parent="."]
+position = Vector2( 304, 224 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 48, 0, 16, 16 )
+
+[node name="Prop027" type="Sprite" parent="."]
+position = Vector2( 336, 224 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 32, 16, 16, 16 )
+
+[node name="Prop028" type="Sprite" parent="."]
+position = Vector2( 336, 240 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 32, 32, 16, 16 )
+
+[node name="Prop030" type="Sprite" parent="."]
+position = Vector2( 336, 240 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 32, 32, 16, 16 )
+
+[node name="Prop036" type="Sprite" parent="."]
+position = Vector2( 376, 216 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, -4, 16, 16 )
+
+[node name="Prop037" type="Sprite" parent="."]
+position = Vector2( 400, 216 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 16, -4, 16, 16 )
+
+[node name="Prop038" type="Sprite" parent="."]
+position = Vector2( 416, 216 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 128, -4, 16, 16 )
+
+[node name="Prop039" type="Sprite" parent="."]
+position = Vector2( 432, 216 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 160, 28, 16, 16 )
+
+[node name="Prop040" type="Sprite" parent="."]
+position = Vector2( 448, 216 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 48, 28, 16, 16 )
+
+[node name="Prop041" type="Sprite" parent="."]
+position = Vector2( 464, 216 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 16, 28, 16, 16 )
+
+[node name="Prop042" type="Sprite" parent="."]
+position = Vector2( 368, 232 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 128, 41, 16, 16 )
+
+[node name="Prop044" type="Sprite" parent="."]
+position = Vector2( 376, 280 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, -6, 37, 64 )
+
+[node name="Prop045" type="Sprite" parent="."]
+position = Vector2( 416, 288 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 40, 16, 17, 42 )
+
+[node name="Prop046" type="Sprite" parent="."]
+position = Vector2( 440, 298 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 62, 41, 18, 17 )
+
+[node name="Prop048" type="Sprite" parent="."]
+position = Vector2( 460, 288 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 84, 17, 16, 41 )
+
+[node name="Prop049" type="Sprite" parent="."]
+position = Vector2( 480, 304 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 104, 51, 18, 7 )
+
+[node name="Prop047" type="Sprite" parent="."]
+position = Vector2( 448, 258 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 59, 18, 24, 21 )
+
+[node name="Prop043" type="Sprite" parent="."]
+position = Vector2( 384, 232 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 144, 41, 16, 16 )
